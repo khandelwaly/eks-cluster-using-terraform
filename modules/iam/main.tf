@@ -1,6 +1,6 @@
 # IAM role for cluster
 
-resource "aws_iam_role" "cluster" {
+resource "aws_iam_role" "cluster_role" {
   name = var.name.cluster
 
   assume_role_policy = <<POLICY
