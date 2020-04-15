@@ -10,16 +10,20 @@ variable "cidr_block" {
 variable "private_subnet" {
   default = [""]
 }
-
-variable "availability_zone" {
+variable "public_subnet"{
   default = [""]
 }
-
+variable "availability_zone_private" {
+  default = [""]
+}
+variable "availability_zone_public" {
+  default = [""]
+}
 variable "tag" {
   type    = map
   default = {
-    "Name" = "eks-vpc-devops"
-    "owner" = "eks-vpc-devops"
+    "Name" = "eks_vpc_devops"
+    "owner" = "eks_vpc_devops"
     "purpose" = "tf-2"
   }
 }
