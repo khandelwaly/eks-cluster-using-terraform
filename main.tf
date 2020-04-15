@@ -15,7 +15,7 @@ module "vpc" {
 #   enable_vpn_gateway = true
 }
 
-#module "iam" {
-#  source = "./modules/iam"
-#}
+module "iam" {
+  source = "./modules/iam"
+}
 
