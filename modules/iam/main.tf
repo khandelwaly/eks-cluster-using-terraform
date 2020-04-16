@@ -1,6 +1,6 @@
 # IAM role for cluster
 
-resource "aws_iam_role" "cluster_role" {
+resource "aws_iam_role" "cluster" {
   name = var.name.cluster
 
   assume_role_policy = <<POLICY
@@ -63,7 +63,7 @@ resource "aws_iam_role_policy_attachement" "AmazonEKSWorkerNodePolicy" {
 
 resource "aws_iam_role_policy_attachement" "AmazonEC2ContainerRegistryReadOnly" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
-  role = aws_iamarn:aws:iam::aws:policy/_role.node.name
+  role = aws_iam_role.node.name
 }
 
 resource "aws_iam_role_policy_attachement" "AmazonEKSServicePolicy" {
