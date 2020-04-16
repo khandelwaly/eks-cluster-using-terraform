@@ -21,7 +21,7 @@ resource "aws_subnet" "private" {
       purpose = var.tag["purpose"]
   }
 }
-output "aws_subnet" {
+output "aws_subnet_private_id" {
   value = aws_subnet.private[*].id
 }
 resource "aws_subnet" "public" {
