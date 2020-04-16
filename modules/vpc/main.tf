@@ -3,7 +3,7 @@ resource "aws_vpc" "eks_vpc" {
     enable_dns_support   = true
     enable_dns_hostnames = true
     tags = {
-          Name = var.tag["Name"]
+          Name = "eks_cluster_vpc"
           owner = var.tag["owner"]
           purpose = var.tag["purpose"]
       }
@@ -15,6 +15,11 @@ resource "aws_subnet" "private" {
   cidr_block              = var.private_subnet[count.index]
   availability_zone       = var.availability_zone_private[count.index]
   map_public_ip_on_launch = false
+  tags = {
+      Name = "private_subnet"
+      owner = var.tag["owner"]
+      purpose = var.tag["purpose"]
+  }
 }
 
 resource "aws_subnet" "public" {
@@ -23,21 +28,26 @@ resource "aws_subnet" "public" {
   cidr_block              = var.public_subnet[count.index]
   availability_zone       = var.availability_zone_public[count.index]
   map_public_ip_on_launch = true
+  tags = {
+      Name = "public_subnet"
+      owner = var.tag["owner"]
+      purpose = var.tag["purpose"]
+  }
 }
 
 resource "aws_internet_gateway" "eks_vpc_igw" {
  vpc_id = aws_vpc.eks_vpc.id
-    tags = {
-          Name = var.tag["Name"]
-          owner = var.tag["owner"]
-          purpose = var.tag["purpose"]
-      }
+ tags = {
+      Name = "eks_cluster_igw"
+      owner = var.tag["owner"]
+      purpose = var.tag["purpose"]
+  }
 }
 
 resource "aws_route_table" "eks_vpc_rt_public" {
  vpc_id = aws_vpc.eks_vpc.id
   tags = {
-      Name = var.tag["Name"]
+      Name = "public_rt"
       owner = var.tag["owner"]
       purpose = var.tag["purpose"]
   }
@@ -57,4 +67,6 @@ resource "aws_route_table_association" "eks_subnet_association" {
   count                   = length(var.public_subnet)
   subnet_id      = aws_subnet.public[count.index].id
   route_table_id = aws_route_table.eks_vpc_rt_public.id
-} # end resource
+} 
+
+
