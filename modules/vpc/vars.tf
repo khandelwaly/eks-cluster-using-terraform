@@ -22,8 +22,8 @@ variable "availability_zone_public" {
 variable "tag" {
   type    = map
   default = {
-    "Name" = "eks_vpc_devops"
-    "owner" = "eks_vpc_devops"
-    "purpose" = "tf-2"
+    "Name" = "eks_cluster"
+    "owner" = "eks_cluster"
+    "purpose" = "assignment"
   }
 }
