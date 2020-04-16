@@ -19,3 +19,7 @@ module "iam" {
   source = "./modules/iam"
 }
 
+module "eks" {
+  source = "./modules/eks"
+}
+
