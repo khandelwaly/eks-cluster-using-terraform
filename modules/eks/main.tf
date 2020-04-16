@@ -1,33 +1,34 @@
+
 resource "aws_eks_cluster" "self" {
-  name     = vars.aws_eks_cluster_name
-  role_arn = cluster_role.name
+  name     = var.aws_eks_cluster_name
+  role_arn = var.role_arn
 
   vpc_config {
-    subnet_ids = ["${aws_subnet.example1.id}", "${aws_subnet.example2.id}"]
+    subnet_ids = var.subnet_ids
   }
 
   # Ensure that IAM Role permissions are created before and deleted after EKS Cluster handling.
   # Otherwise, EKS will not be able to properly delete EKS managed EC2 infrastructure such as Security Groups.
   depends_on = [
-    "aws_iam_role_policy_attachment.example-AmazonEKSClusterPolicy",
-    "aws_iam_role_policy_attachment.example-AmazonEKSServicePolicy",
+    aws_iam_role_policy_attachment.example-AmazonEKSClusterPolicy,
+    aws_iam_role_policy_attachment.example-AmazonEKSServicePolicy,
   ]
 }
 
 output "endpoint" {
-  value = "${aws_eks_cluster.example.endpoint}"
+  value = aws_eks_cluster.self.endpoint
 }
 
 output "kubeconfig-certificate-authority-data" {
-  value = "${aws_eks_cluster.example.certificate_authority.0.data}"
+  value = aws_eks_cluster.self.certificate_authority.0.data
 }
 
 
 resource "aws_eks_node_group" "self" {
   cluster_name    = aws_eks_cluster.self.name
-  node_group_name = vars.node_group_name
+  node_group_name = var.node_group_name
   node_role_arn   = aws_iam_role.cluster_role.arn
-  subnet_ids      = aws_subnet.example[*].id
+  subnet_ids      = aws_subnet.private[*].id
 
   scaling_config {
     desired_size = 1

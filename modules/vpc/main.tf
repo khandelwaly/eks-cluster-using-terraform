@@ -21,7 +21,9 @@ resource "aws_subnet" "private" {
       purpose = var.tag["purpose"]
   }
 }
-
+output "aws_subnet" {
+  value = aws_subnet.private[*].id
+}
 resource "aws_subnet" "public" {
   count                   = length(var.public_subnet)
   vpc_id                  = aws_vpc.eks_vpc.id

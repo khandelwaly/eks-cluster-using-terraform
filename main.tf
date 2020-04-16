@@ -13,6 +13,7 @@ module "vpc" {
   public_subnet =  ["10.0.3.0/24","10.0.4.0/24"]
 #   enable_nat_gateway = true
 #   enable_vpn_gateway = true
+
 }
 
 module "iam" {
@@ -21,5 +22,8 @@ module "iam" {
 
 module "eks" {
   source = "./modules/eks"
+  role_arn = module.iam.aws_iam_role.cluster.role
+  subnet_ids = module.vpc.aws_subnet.private[*].id
+
 }
 

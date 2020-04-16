@@ -4,3 +4,9 @@ variable "aws_eks_cluster_name" {
 variable "node_group_name" {
   default = ""
 }
+variable "role_arn" {
+  default = ""
+}
+variable "subnet_ids"{
+  default = null
+}
