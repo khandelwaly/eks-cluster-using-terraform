@@ -1,7 +1,7 @@
 variable "name" {
   type = map
   default = {
-      cluster = "eks-cluster"
-      node = "eks-node"
+      cluster = "eks_cluster_devops"
+      node = "eks_node_devops"
   }
 }

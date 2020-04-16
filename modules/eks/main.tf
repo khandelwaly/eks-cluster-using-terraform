@@ -13,6 +13,10 @@ resource "aws_eks_cluster" "self" {
   #   aws_iam_role_policy_attachment.example-AmazonEKSClusterPolicy,
   #   aws_iam_role_policy_attachment.example-AmazonEKSServicePolicy,
   # ]
+   depends_on = [
+    var.example-AmazonEKSClusterPolicy,
+    var.example-AmazonEKSServicePolicy,
+  ]
 }
 
 output "endpoint" {

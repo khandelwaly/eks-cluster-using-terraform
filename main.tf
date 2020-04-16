@@ -25,5 +25,7 @@ module "eks" {
   role_arn = module.iam.aws_iam_role
   subnet_ids = module.vpc.aws_subnet_private_id
   node_role_arn = module.iam.node_role_arn
+  example-AmazonEKSServicePolicy = module.iam.example-AmazonEKSServicePolicy
+  example-AmazonEKSClusterPolicy = module.iam.example-AmazonEKSClusterPolicy
 }
 

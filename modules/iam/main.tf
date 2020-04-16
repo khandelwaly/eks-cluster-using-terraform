@@ -19,10 +19,6 @@ resource "aws_iam_role" "cluster" {
 POLICY
 }
 
-output "aws_iam_role" {
-  value = aws_iam_role.cluster.arn
-}
-
 resource "aws_iam_role_policy_attachment" "example-AmazonEKSClusterPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
   role       = aws_iam_role.cluster.name
@@ -32,6 +28,8 @@ resource "aws_iam_role_policy_attachment" "example-AmazonEKSServicePolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
   role       = aws_iam_role.cluster.name
 }
+
+
 
 # IAM role for node
 
@@ -80,6 +78,3 @@ resource "aws_iam_role_policy_attachment" "AmazonEKS_CNI_Policy" {
   role = aws_iam_role.node.name
 }
 
-output "node_role_arn" {
-  value = aws_iam_role.node.arn
-}

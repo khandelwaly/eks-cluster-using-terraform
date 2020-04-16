@@ -19,6 +19,7 @@ resource "aws_subnet" "private" {
       Name = "private_subnet"
       owner = var.tag["owner"]
       purpose = var.tag["purpose"]
+      "kubernetes.io/cluster/EKS_cluster_devops" = "shared"
   }
 }
 output "aws_subnet_private_id" {
@@ -34,6 +35,7 @@ resource "aws_subnet" "public" {
       Name = "public_subnet"
       owner = var.tag["owner"]
       purpose = var.tag["purpose"]
+
   }
 }
 
