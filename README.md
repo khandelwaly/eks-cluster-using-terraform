@@ -4,7 +4,7 @@
 
 ## Contributers :
 
-- [Abhishek]:https://github.com/abhishekchauhan98
-- [Shivansh]:https://github.com/shivanshthapliyal
-- [Yash]:https://github.com/yash-khandelwal-ttn
+- Abhishek[]:https://github.com/abhishekchauhan98
+- Shivansh[]:https://github.com/shivanshthapliyal
+- Yash[]:https://github.com/yash-khandelwal-ttn
 
