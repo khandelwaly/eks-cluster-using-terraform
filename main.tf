@@ -1,5 +1,6 @@
 provider "aws" {
-    profile = "ttn-newers"
+    profile = "sandbox"
+    #shared_credentials_file = "~/.aws/creds"
     region = "us-east-1"
 }
 
