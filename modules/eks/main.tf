@@ -40,6 +40,12 @@ resource "aws_eks_node_group" "self" {
     min_size     = 1
   }
 
+  provisioner "local-exec" {
+    command = "aws eks update-kubeconfig --name ${aws_eks_cluster.self.name} --profile sandbox"
+  }
+  provisioner "local-exec" {
+    command = "kubectl apply -f deployment.yml"
+  }
   # Ensure that IAM Role permissions are created before and deleted after EKS Node Group handling.
   # Otherwise, EKS will not be able to properly delete EC2 Instances and Elastic Network Interfaces.
   # depends_on = [

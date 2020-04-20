@@ -1,5 +1,5 @@
 provider "aws" {
-    profile = "yash"
+    profile = "sandbox"
     region = "us-east-1"
 }
 
